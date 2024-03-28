@@ -382,6 +382,7 @@ class FOSHttpCacheExtension extends Extension
             }
             $config['servers'] = $config['servers_from_jsonenv'];
         }
+
         if (!empty($config['base_url'])) {
             $baseUrl = $config['base_url'];
             $usedEnvs = [];
@@ -391,8 +392,9 @@ class FOSHttpCacheExtension extends Extension
                 $this->validateUrl($baseUrl, 'Not a valid base path: "%s"');
             }
         } else {
-            $baseUrl = null;
+            $baseUrl = '';
         }
+
         $httpClient = null;
         if ($config['http_client']) {
             $httpClient = new Reference($config['http_client']);
@@ -629,7 +631,7 @@ class FOSHttpCacheExtension extends Extension
     {
         $prefixed = $this->prefixSchema($url);
 
-        if (!$parts = parse_url($prefixed)) {
+        if (!parse_url($prefixed)) {
             throw new InvalidConfigurationException(sprintf($msg, $url));
         }
     }

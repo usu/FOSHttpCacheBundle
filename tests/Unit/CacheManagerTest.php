@@ -38,7 +38,7 @@ class CacheManagerTest extends TestCase
             ->shouldReceive('purge')->once()->with('/my/route', [])
             ->shouldReceive('purge')->once()->with('/route/with/params/id/123', [])
             ->shouldReceive('purge')->once()->with('/route/with/params/id/123', ['X-Foo' => 'bar'])
-            ->shouldReceive('flush')->once()
+            ->shouldReceive('flush')->once()->andReturn(2)
             ->getMock();
 
         $router = \Mockery::mock(UrlGeneratorInterface::class)

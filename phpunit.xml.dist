@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<phpunit bootstrap="./tests/bootstrap.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="./tests/bootstrap.php"
          colors="true"
-         convertErrorsToExceptions="true"
-         convertNoticesToExceptions="true"
-         convertWarningsToExceptions="true">
+         cacheDirectory=".phpunit.cache"
+>
+    <source>
+        <include>
+            <directory>./src</directory>
+        </include>
+        <exclude>
+           <directory>./src/Resources</directory>
+        </exclude>
+    </source>
+
     <testsuites>
         <testsuite name="unit">
             <directory suffix="Test.php">./tests/Unit</directory>
@@ -14,22 +23,9 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist>
-            <directory>./src</directory>
-            <exclude>
-                <directory>./src/Resources</directory>
-            </exclude>
-        </whitelist>
-    </filter>
-
-    <listeners>
-        <listener class="\Mockery\Adapter\Phpunit\TestListener" />
-    </listeners>
-
     <php>
-        <env name="KERNEL_DIR" value="./tests/Functional/Fixtures/app" />
-        <env name="KERNEL_CLASS" value="AppKernel" />
-        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak" />
+        <env name="KERNEL_DIR" value="./tests/Functional/Fixtures/app"/>
+        <env name="KERNEL_CLASS" value="AppKernel"/>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
     </php>
 </phpunit>

@@ -52,10 +52,6 @@ class ServiceTest extends KernelTestCase
             if (strncmp('fos_http_cache.', $id, 15)) {
                 continue;
             }
-            // skip deprecated service
-            if ('fos_http_cache.user_context.logout_handler' === $id) {
-                continue;
-            }
             $this->assertIsObject($container->get($id));
         }
     }

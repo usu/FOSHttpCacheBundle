@@ -24,7 +24,7 @@ use Symfony\Component\Security\Http\Logout\LogoutHandlerInterface;
  * This handler is deprecated because it never did what it was supposed to do. The session is already invalidated by the SessionLogoutHandler
  * which is always the first logout handler executed
  */
-class ContextInvalidationLogoutHandler implements LogoutHandlerInterface
+final class ContextInvalidationLogoutHandler implements LogoutHandlerInterface
 {
     private $invalidator;
 

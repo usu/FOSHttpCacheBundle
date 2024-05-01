@@ -19,9 +19,9 @@ use Symfony\Component\DependencyInjection\Reference;
 /**
  * Add tagged provider to the hash generator for user context.
  */
-class HashGeneratorPass implements CompilerPassInterface
+final class HashGeneratorPass implements CompilerPassInterface
 {
-    const TAG_NAME = 'fos_http_cache.user_context_provider';
+    public const TAG_NAME = 'fos_http_cache.user_context_provider';
 
     /**
      * {@inheritdoc}

@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 /**
  * The RoleProvider adds roles to the UserContext for the hash generation.
  */
-class RoleProvider implements ContextProvider
+final class RoleProvider implements ContextProvider
 {
     /**
      * Create the role provider with a security context.

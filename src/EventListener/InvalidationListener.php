@@ -33,7 +33,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  *
  * @author David de Boer <david@driebit.nl>
  */
-class InvalidationListener extends AbstractRuleListener implements EventSubscriberInterface
+final class InvalidationListener extends AbstractRuleListener implements EventSubscriberInterface
 {
     private CacheManager $cacheManager;
     private UrlGeneratorInterface $urlGenerator;
@@ -136,7 +136,7 @@ class InvalidationListener extends AbstractRuleListener implements EventSubscrib
         }
 
         // Check configured invalidators
-        if (!$invalidatorConfigs = $this->matchRule($request, $response)) {
+        if (!$invalidatorConfigs = $this->matchRule($request)) {
             return;
         }
 

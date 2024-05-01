@@ -34,7 +34,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @author Stefan Paschke <stefan.paschke@gmail.com>
  * @author Joel Wurtz <joel.wurtz@gmail.com>
  */
-class UserContextListener implements EventSubscriberInterface
+final class UserContextListener implements EventSubscriberInterface
 {
     private RequestMatcherInterface $requestMatcher;
     private HashGenerator $hashGenerator;
@@ -136,7 +136,7 @@ class UserContextListener implements EventSubscriberInterface
             $response->setPublic();
             if ($this->hasSessionListener) {
                 // header to avoid Symfony SessionListener overwriting the response to private
-                $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 1);
+                $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, '1');
             }
         } else {
             $response->setClientTtl(0);
@@ -201,7 +201,7 @@ class UserContextListener implements EventSubscriberInterface
             // user hash header was in vary or just added here by "add_vary_on_hash"
             if ($this->hasSessionListener && in_array($this->options['user_hash_header'], $vary, true)) {
                 // header to avoid Symfony SessionListener overwriting the response to private
-                $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, 1);
+                $response->headers->set(AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER, '1');
             }
         } elseif ($this->options['add_vary_on_hash']) {
             /*

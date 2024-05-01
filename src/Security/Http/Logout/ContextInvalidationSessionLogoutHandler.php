@@ -17,7 +17,7 @@ use Symfony\Component\Security\Http\EventListener\SessionLogoutListener;
 
 final class ContextInvalidationSessionLogoutHandler extends SessionLogoutListener
 {
-    private $invalidator;
+    private UserContextInvalidator $invalidator;
 
     public function __construct(UserContextInvalidator $invalidator)
     {

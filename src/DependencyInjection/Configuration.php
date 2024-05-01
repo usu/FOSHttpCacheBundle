@@ -34,7 +34,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
  * @author David de Boer <david@driebit.nl>
  * @author David Buchmann <mail@davidbu.ch>
  */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     /**
      * @var bool
@@ -240,7 +240,7 @@ class Configuration implements ConfigurationInterface
             && array_key_exists('fastly', $v['proxy_client']);
     }
 
-    private function addCacheableResponseSection(ArrayNodeDefinition $rootNode)
+    private function addCacheableResponseSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -278,7 +278,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Cache header control main section.
      */
-    private function addCacheControlSection(ArrayNodeDefinition $rootNode)
+    private function addCacheControlSection(ArrayNodeDefinition $rootNode): void
     {
         $rules = $rootNode
             ->children()
@@ -366,7 +366,7 @@ class Configuration implements ConfigurationInterface
      *
      * @param bool $matchResponse whether to also add fields to match response
      */
-    private function addMatch(NodeBuilder $rules, $matchResponse = false)
+    private function addMatch(NodeBuilder $rules, $matchResponse = false): void
     {
         $match = $rules
             ->arrayNode('match')
@@ -613,7 +613,7 @@ class Configuration implements ConfigurationInterface
      *
      * @return NodeDefinition
      */
-    private function getHttpDispatcherNode()
+    private function getHttpDispatcherNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('http');
 
@@ -650,7 +650,7 @@ class Configuration implements ConfigurationInterface
         return $node;
     }
 
-    private function getCloudflareHttpDispatcherNode()
+    private function getCloudflareHttpDispatcherNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('http');
 
@@ -680,7 +680,7 @@ class Configuration implements ConfigurationInterface
         return $node;
     }
 
-    private function getFastlyHttpDispatcherNode()
+    private function getFastlyHttpDispatcherNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('http');
 
@@ -709,7 +709,7 @@ class Configuration implements ConfigurationInterface
         return $node;
     }
 
-    private function addTestSection(ArrayNodeDefinition $rootNode)
+    private function addTestSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -752,7 +752,7 @@ class Configuration implements ConfigurationInterface
     /**
      * Cache manager main section.
      */
-    private function addCacheManagerSection(ArrayNodeDefinition $rootNode)
+    private function addCacheManagerSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -792,7 +792,7 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addTagSection(ArrayNodeDefinition $rootNode)
+    private function addTagSection(ArrayNodeDefinition $rootNode): void
     {
         $rules = $rootNode
             ->children()
@@ -848,7 +848,7 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addInvalidationSection(ArrayNodeDefinition $rootNode)
+    private function addInvalidationSection(ArrayNodeDefinition $rootNode): void
     {
         $rules = $rootNode
             ->children()
@@ -889,7 +889,7 @@ class Configuration implements ConfigurationInterface
     /**
      * User context main section.
      */
-    private function addUserContextListenerSection(ArrayNodeDefinition $rootNode)
+    private function addUserContextListenerSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -958,7 +958,7 @@ class Configuration implements ConfigurationInterface
         ;
     }
 
-    private function addFlashMessageSection(ArrayNodeDefinition $rootNode)
+    private function addFlashMessageSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()
@@ -988,7 +988,7 @@ class Configuration implements ConfigurationInterface
             ->end();
     }
 
-    private function addDebugSection(ArrayNodeDefinition $rootNode)
+    private function addDebugSection(ArrayNodeDefinition $rootNode): void
     {
         $rootNode
             ->children()

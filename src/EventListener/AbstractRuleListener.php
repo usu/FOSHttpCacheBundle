@@ -31,7 +31,7 @@ abstract class AbstractRuleListener
     public function addRule(
         RequestMatcherInterface $requestMatcher,
         array $settings = []
-    ) {
+    ): void {
         $this->rulesMap[] = [$requestMatcher, $settings];
     }
 
@@ -40,7 +40,7 @@ abstract class AbstractRuleListener
      *
      * @return array|false Settings to apply or false if no rule matched
      */
-    protected function matchRule(Request $request)
+    protected function matchRule(Request $request): array|false
     {
         foreach ($this->rulesMap as $elements) {
             if ($elements[0]->matches($request)) {

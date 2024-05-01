@@ -27,7 +27,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @author David de Boer <david@driebit.nl>
  */
-class TagListener extends AbstractRuleListener implements EventSubscriberInterface
+final class TagListener extends AbstractRuleListener implements EventSubscriberInterface
 {
     private CacheManager $cacheManager;
     private SymfonyResponseTagger $symfonyResponseTagger;
@@ -108,7 +108,7 @@ class TagListener extends AbstractRuleListener implements EventSubscriberInterfa
      * Get the tags from the attributes on the controller that was used in the
      * request.
      *
-     * @return array List of tags affected by the request
+     * @return string[] List of tags affected by the request
      */
     private function getAttributeTags(Request $request): array
     {

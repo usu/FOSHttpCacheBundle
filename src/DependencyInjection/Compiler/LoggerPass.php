@@ -17,7 +17,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 /**
  * Announce the log listener to the symfony event system.
  */
-class LoggerPass implements CompilerPassInterface
+final class LoggerPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}

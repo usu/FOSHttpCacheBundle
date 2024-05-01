@@ -23,25 +23,19 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @author David Buchmann <mail@davidbu.ch>
  */
-class RuleMatcher implements RuleMatcherInterface
+final class RuleMatcher implements RuleMatcherInterface
 {
-    /**
-     * @var RequestMatcherInterface
-     */
-    private $requestMatcher;
+    private ?RequestMatcherInterface $requestMatcher;
 
-    /**
-     * @var ResponseMatcherInterface
-     */
-    private $responseMatcher;
+    private ?ResponseMatcherInterface $responseMatcher;
 
     /**
      * @param RequestMatcherInterface  $requestMatcher|null  Request matcher
      * @param ResponseMatcherInterface $responseMatcher|null Response matcher
      */
     public function __construct(
-        RequestMatcherInterface $requestMatcher = null,
-        ResponseMatcherInterface $responseMatcher = null
+        ?RequestMatcherInterface $requestMatcher = null,
+        ?ResponseMatcherInterface $responseMatcher = null
     ) {
         $this->requestMatcher = $requestMatcher;
         $this->responseMatcher = $responseMatcher;

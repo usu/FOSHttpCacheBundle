@@ -18,7 +18,6 @@ use FOS\HttpCache\TagHeaderFormatter\TagHeaderFormatter;
 use JeanBeru\HttpCacheCloudFront\Proxy\CloudFront;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
-use Symfony\Component\Config\Definition\Builder\NodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
@@ -55,13 +54,7 @@ final class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('fos_http_cache');
-
-        // Keep compatibility with symfony/config < 4.2
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            $rootNode = $treeBuilder->root('fos_http_cache');
-        } else {
-            $rootNode = $treeBuilder->getRootNode();
-        }
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->validate()
@@ -610,19 +603,11 @@ final class Configuration implements ConfigurationInterface
 
     /**
      * Get the configuration node for a HTTP dispatcher in a proxy client.
-     *
-     * @return NodeDefinition
      */
     private function getHttpDispatcherNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('http');
-
-        // Keep compatibility with symfony/config < 4.2
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            $node = $treeBuilder->root('http');
-        } else {
-            $node = $treeBuilder->getRootNode();
-        }
+        $node = $treeBuilder->getRootNode();
 
         $node
             ->fixXmlConfig('server')
@@ -653,13 +638,7 @@ final class Configuration implements ConfigurationInterface
     private function getCloudflareHttpDispatcherNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('http');
-
-        // Keep compatibility with symfony/config < 4.2
-        if (!method_exists($treeBuilder, 'getRootNode')) {
-            $node = $treeBuilder->root('http');
-        } else {
-            $node = $treeBuilder->getRootNode();
-        }
+        $node = $treeBuilder->getRootNode();
 
         $node
             ->addDefaultsIfNotSet()
@@ -683,7 +662,6 @@ final class Configuration implements ConfigurationInterface
     private function getFastlyHttpDispatcherNode(): ArrayNodeDefinition
     {
         $treeBuilder = new TreeBuilder('http');
-
         $node = $treeBuilder->getRootNode();
 
         $node

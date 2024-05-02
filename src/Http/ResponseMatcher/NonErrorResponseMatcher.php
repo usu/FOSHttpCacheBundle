@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @see https://tools.ietf.org/html/rfc7234#section-4.4
  */
-class NonErrorResponseMatcher implements ResponseMatcherInterface
+final class NonErrorResponseMatcher implements ResponseMatcherInterface
 {
     public function matches(Response $response)
     {

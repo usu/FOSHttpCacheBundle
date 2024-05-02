@@ -18,7 +18,7 @@ use FOS\HttpCacheBundle\DependencyInjection\Compiler\SessionListenerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class FOSHttpCacheBundle extends Bundle
+final class FOSHttpCacheBundle extends Bundle
 {
     /**
      * {@inheritdoc}

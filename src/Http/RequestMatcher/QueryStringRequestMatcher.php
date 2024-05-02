@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 /**
  * Additional request matcher for query string matching.
  */
-class QueryStringRequestMatcher implements RequestMatcherInterface
+final class QueryStringRequestMatcher implements RequestMatcherInterface
 {
     /**
      * @var string Regular expression to match the query string part of the request url

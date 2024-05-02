@@ -48,9 +48,9 @@ class CacheTagExtension extends AbstractExtension
      *
      * Calling this twig function adds nothing to the output.
      *
-     * @param string|array $tag
+     * @param string|string[] $tag
      */
-    public function addTag($tag)
+    public function addTag($tag): void
     {
         $this->responseTagger->addTags((array) $tag);
     }

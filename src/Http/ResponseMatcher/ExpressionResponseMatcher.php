@@ -14,7 +14,7 @@ namespace FOS\HttpCacheBundle\Http\ResponseMatcher;
 use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\HttpFoundation\Response;
 
-class ExpressionResponseMatcher implements ResponseMatcherInterface
+final class ExpressionResponseMatcher implements ResponseMatcherInterface
 {
     private ?ExpressionLanguage $expressionLanguage;
     private string $expression;

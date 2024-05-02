@@ -14,7 +14,7 @@ namespace FOS\HttpCacheBundle\Http\RequestMatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 
-class UnsafeRequestMatcher implements RequestMatcherInterface
+final class UnsafeRequestMatcher implements RequestMatcherInterface
 {
     public function matches(Request $request): bool
     {

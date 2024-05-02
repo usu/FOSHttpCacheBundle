@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  *
  * @author Yoann Chocteau <yoann@kezaweb.fr>
  */
-class AttributesListener implements EventSubscriberInterface
+final class AttributesListener implements EventSubscriberInterface
 {
     public function __construct(
         private ControllerResolverInterface $controllerResolver

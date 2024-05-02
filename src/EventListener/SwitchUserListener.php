@@ -16,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\SwitchUserEvent;
 use Symfony\Component\Security\Http\SecurityEvents;
 
-class SwitchUserListener implements EventSubscriberInterface
+final class SwitchUserListener implements EventSubscriberInterface
 {
     private UserContextInvalidator $invalidator;
 

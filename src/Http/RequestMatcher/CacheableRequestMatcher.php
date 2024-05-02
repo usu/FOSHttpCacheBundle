@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 /**
  * @see https://tools.ietf.org/html/rfc7231#section-4.2.3
  */
-class CacheableRequestMatcher implements RequestMatcherInterface
+final class CacheableRequestMatcher implements RequestMatcherInterface
 {
     public function matches(Request $request): bool
     {

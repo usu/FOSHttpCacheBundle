@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  * AbstractSessionListener::NO_AUTO_CACHE_CONTROL_HEADER from being leaked to
  * the client.
  */
-class SessionListenerPass implements CompilerPassInterface
+final class SessionListenerPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}

@@ -18,15 +18,21 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @see https://tools.ietf.org/html/rfc7231#section-6.1
  */
-class CacheableResponseMatcher implements ResponseMatcherInterface
+final class CacheableResponseMatcher implements ResponseMatcherInterface
 {
-    private $cacheableStatusCodes = [
+    /**
+     * @var int[]
+     */
+    private array $cacheableStatusCodes = [
         200, 203, 204, 206,
         300, 301,
         404, 405, 410, 414,
         501,
     ];
 
+    /**
+     * @param int[] $additionalStatusCodes
+     */
     public function __construct(array $additionalStatusCodes = [])
     {
         $this->cacheableStatusCodes = array_merge(

@@ -15,7 +15,7 @@ use FOS\HttpCache\ProxyClient\Invalidation\TagCapable;
 
 class UserContextInvalidator
 {
-    const USER_CONTEXT_TAG_PREFIX = 'fos_http_cache_hashlookup-';
+    public const USER_CONTEXT_TAG_PREFIX = 'fos_http_cache_hashlookup-';
 
     /**
      * @var TagCapable
@@ -32,12 +32,12 @@ class UserContextInvalidator
      *
      * @param string $sessionId
      */
-    public function invalidateContext($sessionId)
+    public function invalidateContext($sessionId): void
     {
         $this->tagger->invalidateTags([static::buildTag($sessionId)]);
     }
 
-    public static function buildTag($hash)
+    public static function buildTag(string $hash): string
     {
         return static::USER_CONTEXT_TAG_PREFIX.$hash;
     }

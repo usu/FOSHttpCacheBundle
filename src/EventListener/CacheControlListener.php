@@ -26,7 +26,7 @@ use Symfony\Component\HttpKernel\KernelEvents;
  * @author Lea Haensenberger <lea.haensenberger@gmail.com>
  * @author David Buchmann <mail@davidbu.ch>
  */
-class CacheControlListener implements EventSubscriberInterface
+final class CacheControlListener implements EventSubscriberInterface
 {
     /**
      * Whether to skip this response and not set any cache headers.
@@ -52,7 +52,7 @@ class CacheControlListener implements EventSubscriberInterface
      * If not empty, add a debug header with that name to all responses,
      * telling the cache proxy to add debug output.
      *
-     * @var string|bool Name of the header or false to add no header
+     * @var string|false Name of the header or false to add no header
      */
     private string|false $debugHeader;
 
@@ -96,7 +96,7 @@ class CacheControlListener implements EventSubscriberInterface
         $response = $event->getResponse();
 
         if ($this->debugHeader) {
-            $response->headers->set($this->debugHeader, 1, false);
+            $response->headers->set($this->debugHeader, '1', false);
         }
 
         // do not change cache directives on non-cacheable requests.
@@ -125,7 +125,7 @@ class CacheControlListener implements EventSubscriberInterface
             && null !== $options['reverse_proxy_ttl']
             && !$response->headers->has('X-Reverse-Proxy-TTL')
         ) {
-            $response->headers->set('X-Reverse-Proxy-TTL', (int) $options['reverse_proxy_ttl'], false);
+            $response->headers->set('X-Reverse-Proxy-TTL', $options['reverse_proxy_ttl'], false);
         }
 
         if (!empty($options['vary'])) {

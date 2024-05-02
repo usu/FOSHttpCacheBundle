@@ -31,7 +31,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class FOSHttpCacheExtension extends Extension
+final class FOSHttpCacheExtension extends Extension
 {
     public function getConfiguration(array $config, ContainerBuilder $container): ConfigurationInterface
     {
@@ -579,7 +579,7 @@ class FOSHttpCacheExtension extends Extension
         );
     }
 
-    private function loadVarnishProxyServer(ContainerBuilder $container, XmlFileLoader $loader, $config): void
+    private function loadVarnishProxyServer(ContainerBuilder $container, XmlFileLoader $loader, array $config): void
     {
         $loader->load('varnish_proxy.xml');
         foreach ($config as $key => $value) {
@@ -590,7 +590,7 @@ class FOSHttpCacheExtension extends Extension
         }
     }
 
-    private function loadNginxProxyServer(ContainerBuilder $container, XmlFileLoader $loader, $config): void
+    private function loadNginxProxyServer(ContainerBuilder $container, XmlFileLoader $loader, array $config): void
     {
         $loader->load('nginx_proxy.xml');
         foreach ($config as $key => $value) {
@@ -627,7 +627,7 @@ class FOSHttpCacheExtension extends Extension
         }
     }
 
-    private function validateUrl($url, $msg): void
+    private function validateUrl(string $url, string $msg): void
     {
         $prefixed = $this->prefixSchema($url);
 
@@ -636,7 +636,7 @@ class FOSHttpCacheExtension extends Extension
         }
     }
 
-    private function prefixSchema($url)
+    private function prefixSchema(string $url): string
     {
         if (!str_contains($url, '://')) {
             $url = sprintf('%s://%s', 'http', $url);
@@ -645,7 +645,7 @@ class FOSHttpCacheExtension extends Extension
         return $url;
     }
 
-    private function getDefaultProxyClient(array $config)
+    private function getDefaultProxyClient(array $config): string
     {
         if (isset($config['default'])) {
             return $config['default'];

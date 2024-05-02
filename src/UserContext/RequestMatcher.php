@@ -14,13 +14,13 @@ namespace FOS\HttpCacheBundle\UserContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestMatcherInterface;
 
-class RequestMatcher implements RequestMatcherInterface
+final class RequestMatcher implements RequestMatcherInterface
 {
-    private $method;
+    private ?string $method;
 
-    private $accept;
+    private ?string $accept;
 
-    public function __construct($accept = 'application/vnd.fos.user-context-hash', $method = null)
+    public function __construct(?string $accept = 'application/vnd.fos.user-context-hash', ?string $method = null)
     {
         $this->accept = $accept;
         $this->method = $method;

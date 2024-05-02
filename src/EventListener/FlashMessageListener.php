@@ -19,8 +19,6 @@ use Symfony\Component\HttpKernel\Event\ResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class_alias(ResponseEvent::class, 'FOS\HttpCacheBundle\EventListener\FlashMessageResponseEvent');
-
 /**
  * This event handler reads all flash messages and moves them into a cookie.
  *
@@ -54,7 +52,7 @@ final class FlashMessageListener implements EventSubscriberInterface
     /**
      * Moves flash messages from the session to a cookie inside a Response Kernel listener.
      */
-    public function onKernelResponse(FlashMessageResponseEvent $event): void
+    public function onKernelResponse(ResponseEvent $event): void
     {
         try {
             $session = $event->getRequest()->getSession();

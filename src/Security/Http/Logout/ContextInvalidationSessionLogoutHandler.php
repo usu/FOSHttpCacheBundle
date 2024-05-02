@@ -11,11 +11,11 @@
 
 namespace FOS\HttpCacheBundle\Security\Http\Logout;
 
-use FOS\HttpCacheBundle\UserContextInvalidator;
 use Symfony\Component\Security\Http\Event\LogoutEvent;
-use Symfony\Component\Security\Http\EventListener\SessionLogoutListener;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use FOS\HttpCacheBundle\UserContextInvalidator;
 
-final class ContextInvalidationSessionLogoutHandler extends SessionLogoutListener
+final class ContextInvalidationSessionLogoutHandler implements EventSubscriberInterface
 {
     private UserContextInvalidator $invalidator;
 
@@ -28,8 +28,14 @@ final class ContextInvalidationSessionLogoutHandler extends SessionLogoutListene
     {
         if ($event->getRequest()->hasSession()) {
             $this->invalidator->invalidateContext($event->getRequest()->getSession()->getId());
+            $event->getRequest()->getSession()->invalidate();
         }
+    }
 
-        parent::onLogout($event);
+    public static function getSubscribedEvents(): array
+    {
+        return [
+            LogoutEvent::class => 'onLogout',
+        ];
     }
 }

@@ -22,11 +22,8 @@ trait SessionHelperTrait
 {
     private function callInRequestContext(KernelBrowser $client, callable $callable)
     {
-        $container = method_exists($this, 'getContainer') ? self::getContainer() : (property_exists($this, 'container') ? self::$container : $client->getContainer());
         /** @var EventDispatcherInterface $eventDispatcher */
-        $eventDispatcher = Kernel::MAJOR_VERSION < 5
-            ? $container->get(EventDispatcherInterface::class)
-            : self::$kernel->getContainer()->get('test.service_container')->get(EventDispatcherInterface::class)
+        $eventDispatcher = self::$kernel->getContainer()->get('test.service_container')->get(EventDispatcherInterface::class);
         ;
         $wrappedCallable = function (RequestEvent $event) use (&$callable) {
             try {

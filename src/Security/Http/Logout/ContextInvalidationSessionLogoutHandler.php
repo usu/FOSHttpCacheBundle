@@ -11,9 +11,9 @@
 
 namespace FOS\HttpCacheBundle\Security\Http\Logout;
 
-use Symfony\Component\Security\Http\Event\LogoutEvent;
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use FOS\HttpCacheBundle\UserContextInvalidator;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 final class ContextInvalidationSessionLogoutHandler implements EventSubscriberInterface
 {

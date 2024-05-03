@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\HttpKernel\KernelEvents;
 
 /**
@@ -22,12 +21,9 @@ trait SessionHelperTrait
 {
     private function callInRequestContext(KernelBrowser $client, callable $callable)
     {
-        $container = method_exists($this, 'getContainer') ? self::getContainer() : (property_exists($this, 'container') ? self::$container : $client->getContainer());
         /** @var EventDispatcherInterface $eventDispatcher */
-        $eventDispatcher = Kernel::MAJOR_VERSION < 5
-            ? $container->get(EventDispatcherInterface::class)
-            : self::$kernel->getContainer()->get('test.service_container')->get(EventDispatcherInterface::class)
-        ;
+        $eventDispatcher = self::$kernel->getContainer()->get('test.service_container')->get(EventDispatcherInterface::class);
+
         $wrappedCallable = function (RequestEvent $event) use (&$callable) {
             try {
                 $callable($event);

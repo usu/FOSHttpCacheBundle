@@ -30,6 +30,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Twig\TwigFunction;
 
 final class FOSHttpCacheExtension extends Extension
 {
@@ -531,6 +532,9 @@ final class FOSHttpCacheExtension extends Extension
         $container->setParameter('fos_http_cache.tag_handler.strict', $config['strict']);
 
         $loader->load('cache_tagging.xml');
+        if (class_exists(TwigFunction::class)) {
+            $loader->load('cache_tagging_twig.xml');
+        }
         if (class_exists(Application::class)) {
             $loader->load('cache_tagging_commands.xml');
         }
